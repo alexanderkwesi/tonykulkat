@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music Battle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+
+      .parallax {
+        background-image: url('../images/mic.jpg');
+        height: 100vh;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        color: white;
+        text-align: center;
+      }
+
+      .overlay {
+        background-color: rgba(0,0,0, 0.5);
+        padding: 13rem;
+        border-radius: 0rem;
+      }
+    </style>
+  </head>
+  <body class="text-white">
+
+    <!-- Parallax Header Section -->
+    <div class="parallax">
+      <div class="overlay w-full h-screen flex flex-col justify-center items-center text-center">
+        <h1 class="text-5xl font-bold drop-shadow-lg">🎵 Music Battle Arena 🎶</h1>
+        <p class="text-xl mt-4">Vote. Rate. Listen.</p>
+      </div>
+    </div>
+
+    <!-- Upload Form -->
+    <div class="w-full flex justify-center bg-gray-900 py-12">
+      <form id="uploadForm" class="bg-black/80 backdrop-blur-md p-8 rounded-xl shadow-xl w-full max-w-md" enctype="multipart/form-data">
+        <h2 class="text-2xl font-semibold mb-4">Upload Your Track</h2>
+        <div class="mb-4">
+          <label class="block mb-1">Artist Name</label>
+          <input name="artist" type="text" required class="w-full px-4 py-2 bg-gray-800 text-white rounded" />
+        </div>
+        <div class="mb-4">
+          <label class="block mb-1">Track Title</label>
+          <input name="title" type="text" required class="w-full px-4 py-2 bg-gray-800 text-white rounded" />
+        </div>
+        <div class="mb-4">
+          <label class="block mb-1">Upload MP3</label>
+          <input id="audio" name="audio" type="file" accept="audio/*" required class="w-full px-4 py-2 bg-gray-800 text-white rounded" />
+        </div>
+        <div class="flex items-center space-x-4 mt-4">
+          <button type="submit" class="bg-pink-600 hover:bg-red-500 text-white px-6 py-2 rounded-lg">Submit Track</button>
+          <div class="relative w-40 h-4 bg-gray-700 rounded">
+            <div id="uploadProgress" class="absolute left-0 top-0 h-4 bg-green-500 rounded" style="width: 0%"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Track Display Section -->
+    <div class="w-full py-12 bg-gradient-to-r from-pink-600 via-red-500 to-black">
+      <div id="trackList" class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 px-4">
+        <!-- Tracks will be injected here dynamically -->
+      </div>
+    </div>
+
+    <!-- Judge Section -->
+    <section class="bg-gray-100 py-16">
+      <div class="max-w-6xl mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold text-gray-800 mb-10">Meet the Judges</h2>
+        <div class="flex flex-col items-center">
+          <div class="bg-white shadow-lg rounded-2xl p-6 max-w-md">
+            <img 
+              src="../images/tonykulkat.png" 
+              alt="Main Judge - Tonykulkat" 
+              class="w-48 h-48 object-cover rounded-full mx-auto border-4 border-gray-300"
+            />
+            <h3 class="text-2xl font-semibold mt-4">Tonykulkat</h3>
+            <p class="text-gray-600 text-sm italic">Main Judge</p>
+            <p class="mt-4 text-gray-700">
+              Tonykulkat is a dynamic Nigerian musical artist known for his powerful voice and fearless lyrical delivery. 
+              With years of experience in the industry, he's now stepping up as a judge to inspire and shape the next generation of musical talents.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-10">
+      <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Branding -->
+        <div>
+          <h2 class="text-2xl font-bold">Tonykulkat Vibes</h2>
+          <p class="mt-2 text-gray-400 text-sm">
+            Inspiring the next wave of musical excellence.
+          </p>
+        </div>
+
+        <!-- Contact Details -->
+        <div>
+          <h3 class="text-lg font-semibold mb-3">Contact Us</h3>
+          <ul class="text-gray-300 text-sm space-y-2">
+            <li>
+              <i class="fas fa-envelope mr-2 text-gray-400"></i>
+              <a href="mailto:info@tonykulkatmusic.com" class="hover:text-white">info@tonykulkatmusic.com</a>
+            </li>
+            <li>
+              <i class="fas fa-phone mr-2 text-gray-400"></i>
+              <a href="tel:+2348012345678" class="hover:text-white">+234 801 234 5678</a>
+            </li>
+            <li>
+              <i class="fas fa-map-marker-alt mr-2 text-gray-400"></i>
+              Lagos, Nigeria
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div>
+          <h3 class="text-lg font-semibold mb-3">Follow Us</h3>
+          <div class="flex flex-col space-y-2 text-sm text-gray-300">
+            <a href="#" class="hover:text-white"><i class="fab fa-facebook-f mr-2"></i>Facebook</a>
+            <a href="#" class="hover:text-white"><i class="fab fa-instagram mr-2"></i>Instagram</a>
+            <a href="#" class="hover:text-white"><i class="fab fa-twitter mr-2"></i>Twitter</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 mt-10 pt-6 text-center text-sm text-gray-500">
+        © 2025 Tonykulkat Music. All rights reserved.
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+
+        setInterval(
+          loadTracks
+        , 1000);
+      
+
+        const uploadForm = document.getElementById('uploadForm');
+        const progressBar = document.getElementById('uploadProgress');
+      
+        if (!uploadForm || !progressBar) {
+          console.error("Missing form or progress bar element in DOM.");
+          return;
+        }
+      
+        uploadForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+      
+          const form = e.target;
+          const formData = new FormData(form);
+      
+          const xhr = new XMLHttpRequest();
+          xhr.open('POST', 'http://127.0.0.1:3000/upload');
+      
+          xhr.upload.onprogress = function (event) {
+            if (event.lengthComputable) {
+              const percent = (event.loaded / event.total) * 100;
+              progressBar.style.width = percent + '%';
+            }
+          };
+      
+          xhr.onload = function () {
+            if (xhr.status === 200) {
+              try {
+                const response = xhr.responseText;  // Or JSON.parse(xhr.responseText) if JSON
+                alert(response);
+                //location.reload();
+                loadTracks();
+              } catch (err) {
+                console.error("Response parsing error:", err);
+                alert("Upload succeeded, but response couldn't be processed.");
+              }
+            } else {
+              alert('Upload failed with status: ' + xhr.status);
+              progressBar.style.width = '0%';
+            }
+          };
+      
+          xhr.onerror = function () {
+            alert('Upload error.');
+            progressBar.style.width = '0%';
+          };
+      
+          xhr.send(formData);
+        });
+      });
+      
+      let tracksLoaded = false;
+
+      async function loadTracks() {
+        if (tracksLoaded) return;
+        tracksLoaded = true;
+        const container = document.getElementById('trackList');
+        container.innerHTML = ''; // Clear existing content to avoid duplicates
+      
+        try {
+          const res = await fetch('http://127.0.0.1:3000/tracks');
+          
+          if (!res.ok) {
+            throw new Error(`HTTP error! Status: ${res.status}`);
+          }
+      
+          const tracks = await res.json();
+      
+          tracks.forEach((track) => {
+            const card = document.createElement('div');
+            card.className = 'bg-black/50 p-4 rounded-lg shadow-xl text-white';
+      
+            card.innerHTML = `
+              <h3 class="text-xl font-bold">${track.title} - ${track.artist}</h3>
+              <audio controls class="w-full mt-2">
+                <source src="http://127.0.0.1:3000/uploads/${track.filename}" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+              <div class="mt-2 flex items-center gap-4">
+                <span>Rating: ${track.rating || 0}/1000</span>
+                <button onclick="rateTrack(${track.id}, 1)" class="text-green-500 hover:text-green-300">⬆️</button>
+                <button onclick="rateTrack(${track.id}, -1)" class="text-red-500 hover:text-red-300">⬇️</button>
+              </div>
+            `;
+      
+            container.appendChild(card);
+          });
+      
+        } catch (error) {
+          console.error('Failed to load tracks:', error);
+          container.innerHTML = '<p class="text-red-500">Failed to load tracks.</p>';
+        }
+      }
+      
+
+      async function rateTrack(id, delta) {
+        const res = await fetch(`http://127.0.0.1:3000/rate/${id}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ delta })
+        });
+        //if (res.ok) location.reload();
+        loadTracks();
+      }
+    </script>
+  </body>
+</html>
